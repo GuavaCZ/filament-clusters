@@ -1,79 +1,82 @@
-# :package_description
+![Filament Cluster Banner](docs/images/banner.jpg)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+# Filament Clusters
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/guava/filament-clusters.svg?style=flat-square)](https://packagist.org/packages/guava/filament-clusters)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/guava/filament-clusters/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/guava/filament-clusters/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/guava/filament-clusters/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/guava/filament-clusters/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/guava/filament-clusters.svg?style=flat-square)](https://packagist.org/packages/guava/filament-clusters)
+
+Filament Clusters allows you to visually cluster multiple fields together. 
+
+Functionality wise it is similar to the `Group` component except that the fields look visually as one, which is useful for tighly coupled form fields, such as a currency and amount which only make sense together.
+
+## Showcase
+
+![Screenshot 01](docs/images/screenshot_01.jpg)
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
+Your support is key to the continual advancement of our plugin. We appreciate every user who has contributed to our journey so far.
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+While our plugin is available for all to use, if you are utilizing it for commercial purposes and believe it adds significant value to your business, we kindly ask you to consider supporting us through GitHub Sponsors. This sponsorship will assist us in continuous development and maintenance to keep our plugin robust and up-to-date. Any amount you contribute will greatly help towards reaching our goals. Join us in making this plugin even better and driving further innovation.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
+composer require guava/filament-clusters
 ```
 
 ## Usage
 
+It's simple as:
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+use Guava\FilamentClusters\Forms\Cluster;
+
+Cluster::make([
+    // Your schema
+]);
 ```
 
-## Testing
+For example for a currency and amount cluster: 
+```php
+use Guava\FilamentClusters\Forms\Cluster;
 
-```bash
-composer test
+Cluster::make([
+    \Filament\Forms\Components\Select::make('currency')
+        ->options(['EUR', 'USD']),
+    
+    \Filament\Forms\Components\TextInput::make('amount')
+        ->numeric()
+        ->required(),
+]),
 ```
 
-## Changelog
+#### Customization
+You can add a label, hint, helper text or actions to your Cluster:
+```php
+use Guava\FilamentClusters\Forms\Cluster;
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Cluster::make([
+    // Schema
+])
+    ->label('My label')
+    ->hint('Useful hint')
+    ->helperText('Help when you\'re stuck');
+```
+
+#### Grid
+By default, the cluster automatically distributes the space among each child component. You can however customize it using `columns` and `columnSpan` for each child, just like you're used to from Filament:
+
+```php
+use Guava\FilamentClusters\Forms\Cluster;
+
+Cluster::make([
+    // Schema
+])->columns(5);
+```
 
 ## Contributing
 
@@ -85,7 +88,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Lukas Frey](https://github.com/GuavaCZ)
 - [All Contributors](../../contributors)
 
 ## License

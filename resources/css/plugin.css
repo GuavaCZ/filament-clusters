@@ -1,0 +1,44 @@
+@import '../../vendor/filament/filament/resources/css/theme.css';
+
+.guava-fi-cl-cluster {
+    &:focus-within {
+        @apply !ring-1 !ring-gray-950/10 dark:!ring-white/20;
+    }
+
+    & .fi-input-wrp {
+        @apply !bg-transparent;
+    }
+
+    & .fi-input-wrp:not(.ring-danger-600):not(.dark\:ring-danger-500) {
+        @apply !ring-0;
+    }
+
+    & .fi-fo-component-ctn {
+        @apply !gap-0;
+
+        .fi-input-wrp {
+            @apply !shadow-none;
+        }
+        /*.fi-input-wrp,*/
+        .fi-input-wrp:focus-within {
+            @apply !ring-2;
+        }
+
+        & > div:not(:last-child) {
+            @apply !border-e !border-gray-200 !pe-0 dark:!border-white/10;
+        }
+
+
+        & > div:not(:first-child):not(:last-child) .fi-input-wrp {
+            @apply rounded-none;
+        }
+
+        & > div:first-child .fi-input-wrp {
+            @apply rounded-r-none;
+        }
+
+        & > div:last-child .fi-input-wrp {
+            @apply rounded-l-none;
+        }
+    }
+}
