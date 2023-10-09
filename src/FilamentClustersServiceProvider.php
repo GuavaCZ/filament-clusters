@@ -13,13 +13,14 @@ class FilamentClustersServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('filament-clusters')
-            ->hasViews();
+            ->hasViews()
+        ;
     }
 
     public function packageBooted(): void
     {
         FilamentAsset::register([
-            Css::make('stylesheet', __DIR__ . '/../resources/dist/plugin.css'),
+            Css::make('stylesheet', __DIR__.'/../resources/dist/plugin.css'),
         ], 'guava/filament-clusters');
     }
 }
