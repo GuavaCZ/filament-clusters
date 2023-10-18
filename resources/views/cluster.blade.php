@@ -3,7 +3,10 @@
     :field="$field"
 >
     <x-filament::input.wrapper
-        class="guava-fi-cl-cluster"
+        @class([
+            "guava-fi-cl-cluster",
+            ...$field->getResponsiveClasses(),
+        ])
     >
         {{ $getChildComponentContainer() }}
     </x-filament::input.wrapper>

@@ -1,44 +1,42 @@
 @import '../../vendor/filament/filament/resources/css/theme.css';
 
-.guava-fi-cl-cluster {
-    &:focus-within {
-        @apply !ring-1 !ring-gray-950/10 dark:!ring-white/20;
+@layer base {
+    .guava-fi-cl-cluster.vertical > div > .fi-fo-component-ctn > div:not(:last-child) {
+        @apply !border-e-0 !border-b;
     }
 
-    & .fi-input-wrp {
-        @apply !bg-transparent;
+    .guava-fi-cl-cluster.horizontal > div > .fi-fo-component-ctn > div:not(:last-child) {
+        @apply !border-b-0 !border-e;
     }
 
-    & .fi-input-wrp:not(.ring-danger-600):not(.dark\:ring-danger-500) {
-        @apply !ring-0;
+    .guava-fi-cl-cluster .fi-fo-component-ctn > div {
+        @apply !border-gray-200 !pe-0 dark:!border-white/10;
     }
 
-    & .fi-fo-component-ctn {
-        @apply !gap-0;
-
-        .fi-input-wrp {
-            @apply !shadow-none;
-        }
-        /*.fi-input-wrp,*/
-        .fi-input-wrp:focus-within {
-            @apply !ring-2;
+    .guava-fi-cl-cluster {
+        &:focus-within {
+            @apply !ring-1 !ring-gray-950/10 dark:!ring-white/20;
         }
 
-        & > div:not(:last-child) {
-            @apply !border-e !border-gray-200 !pe-0 dark:!border-white/10;
+        & .fi-input-wrp {
+            @apply !bg-transparent;
         }
 
-
-        & > div:not(:first-child):not(:last-child) .fi-input-wrp {
-            @apply rounded-none;
+        & .fi-input-wrp:not(.ring-danger-600):not(.dark\:ring-danger-500) {
+            @apply !ring-0;
         }
 
-        & > div:first-child .fi-input-wrp {
-            @apply rounded-r-none;
-        }
+        & .fi-fo-component-ctn {
+            @apply !gap-0;
 
-        & > div:last-child .fi-input-wrp {
-            @apply rounded-l-none;
+            .fi-input-wrp {
+                @apply !shadow-none;
+            }
+
+            .fi-input-wrp:not(.guava-fi-cl-cluster):focus-within {
+                @apply !ring-2;
+            }
         }
     }
+
 }

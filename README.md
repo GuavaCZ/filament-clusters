@@ -15,6 +15,8 @@ Functionality wise it is similar to the `Group` component except that the fields
 
 ![Screenshot 01](docs/images/screenshot_01.jpg)
 
+![Screenshot 02](docs/images/screenshot_02.png)
+
 ## Support us
 
 Your support is key to the continual advancement of our plugin. We appreciate every user who has contributed to our journey so far.
@@ -76,6 +78,27 @@ use Guava\FilamentClusters\Forms\Cluster;
 Cluster::make([
     // Schema
 ])->columns(5);
+```
+
+#### Vertical Clusters
+To create a vertical clusters, you simply need set the columns of the Cluster to 1:
+
+```php
+Cluster::make([
+    // Schema
+])->columns(1);
+```
+
+#### Different Breakpoints
+The breakpoints use the same system as Filament`s columns, so you can customize each breakpoint by passing in an array:
+
+```php
+Cluster::make([
+    // Schema
+])->columns([
+    'default' => 1,
+    'lg' => 3,
+]);
 ```
 
 ## Contributing
