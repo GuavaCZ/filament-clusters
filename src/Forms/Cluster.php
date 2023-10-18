@@ -35,18 +35,18 @@ class Cluster extends Component
         $columns = $this->getColumnsConfig();
 
         return [
-            "vertical" => data_get($columns, 'default', 1) === 1,
-            "horizontal" => data_get($columns, 'default', 1) > 1,
-            "sm:vertical" => data_get($columns, 'sm') === 1,
-            "sm:horizontal" => data_get($columns, 'sm') > 1,
-            "md:vertical" => data_get($columns, 'md') === 1,
-            "md:horizontal" => data_get($columns, 'md') > 1,
-            "lg:vertical" => data_get($columns, 'lg') === 1,
-            "lg:horizontal" => data_get($columns, 'lg') > 1,
-            "xl:vertical" => data_get($columns, 'xl') === 1,
-            "xl:horizontal" => data_get($columns, 'xl') > 1,
-            "2xl:vertical" => data_get($columns, '2xl') === 1,
-            "2xl:horizontal" => data_get($columns, '2xl') > 1,
+            'vertical' => data_get($columns, 'default', 1) === 1,
+            'horizontal' => data_get($columns, 'default', 1) > 1,
+            'sm:vertical' => data_get($columns, 'sm') === 1,
+            'sm:horizontal' => data_get($columns, 'sm') > 1,
+            'md:vertical' => data_get($columns, 'md') === 1,
+            'md:horizontal' => data_get($columns, 'md') > 1,
+            'lg:vertical' => data_get($columns, 'lg') === 1,
+            'lg:horizontal' => data_get($columns, 'lg') > 1,
+            'xl:vertical' => data_get($columns, 'xl') === 1,
+            'xl:horizontal' => data_get($columns, 'xl') > 1,
+            '2xl:vertical' => data_get($columns, '2xl') === 1,
+            '2xl:horizontal' => data_get($columns, '2xl') > 1,
         ];
     }
 
@@ -56,7 +56,8 @@ class Cluster extends Component
             parent::getChildComponents(),
             function (Component $component) {
                 return $component
-                    ->fieldWrapperView('filament-clusters::field-wrapper');
+                    ->fieldWrapperView('filament-clusters::field-wrapper')
+                ;
             }
         );
     }
@@ -67,17 +68,19 @@ class Cluster extends Component
             'name' => 'cluster',
         ])
             ->when(
-                !empty($schema),
-                fn(Component $component) => $component->schema($schema)
+                ! empty($schema),
+                fn (Component $component) => $component->schema($schema)
             )
             ->required(
-                fn(Cluster $component) => Arr::first(
-                        $component->getChildComponents(),
-                        fn(Component $component) => $component instanceof Field && $component->isRequired()
-                    ) !== null
-            );
+                fn (Cluster $component) => Arr::first(
+                    $component->getChildComponents(),
+                    fn (Component $component) => $component instanceof Field && $component->isRequired()
+                ) !== null
+            )
+        ;
 
         return $component
-            ->columns(count($component->getChildComponents()));
+            ->columns(count($component->getChildComponents()))
+        ;
     }
 }
