@@ -17,6 +17,7 @@ class Cluster extends Component
     use CanBeAutofocused;
     use CanBeMarkedAsRequired;
     use CanBeValidated;
+    use Concerns\HasExtraFieldWrapperAttributes;
     use HasHelperText;
     use HasHint;
     use HasName;
