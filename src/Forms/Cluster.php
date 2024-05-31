@@ -82,7 +82,7 @@ class Cluster extends Component
 
         return $component
             ->columns(count($component->getChildComponents()))
-//            ->configure()
+            ->configure()
         ;
     }
 }
